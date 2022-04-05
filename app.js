@@ -10,9 +10,9 @@ const compression = require("compression");
 //routes
 const userRouter = require("./routes/userRoute.js");
 const errorHandler = require("./controllers/errorController");
-
 const AppError = require("./utils/AppError");
 const app = express();
+
 //cors
 app.use(cors());
 //<-- parsing data to the backend
