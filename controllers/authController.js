@@ -1,12 +1,17 @@
 const crypto = require("crypto");
 const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
 //const cryptoRandomString = require("crypto-random-string");
 
 const User = require("../models/userModel");
 
 const AppError = require("../utils/AppError");
 const catchAsync = require("../utils/catchAsync");
+
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
 const signToken = (id) =>
     jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -17,7 +22,7 @@ const signToken = (id) =>
 exports.signup = catchAsync(async (req, res, next) => {
     //we need to specify a special route for creating administrative user
     //to prevent malicious user from becoming admin
-   
+
 
     const newUser = await User.create({
         name: req.body.name,
@@ -99,8 +104,8 @@ exports.protect = catchAsync(async (req, res, next) => {
 
     // //check if user changed password after the token was issued
     if (freshUser.changePassword(decoded.iat)) {
-       return next(new AppError("user recently changed password, please log in again", 401))
-     }
+        return next(new AppError("user recently changed password, please log in again", 401))
+    }
     req.user = freshUser;
     next();
 });
