@@ -6,11 +6,15 @@ const rateLimit = require("express-rate-limit");
 const mongoSanitize = require("express-mongo-sanitize");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const passport = require("passport");
+const sessionx = require("express-session");
+
 
 //routes
 const userRouter = require("./routes/userRoute.js");
 const errorHandler = require("./controllers/errorController");
 const AppError = require("./utils/AppError");
+const { session } = require("passport/lib");
 const app = express();
 
 //cors
@@ -25,6 +29,11 @@ app.use(mongoSanitize());
 app.use(xss());
 
 app.use(compression());
+app.use(sessionx({ secret: "secret" }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./controllers/googleAuth');
 
 if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
@@ -46,8 +55,13 @@ app.use("/api/v1/user", userRouter);
 
 //ping if api is working
 app.get("/", (req, res) => {
-    res.send("server is working!");
+    res.send("server is working! \n <a href='/api/v1/user/auth/goo'> Authenticate with google</a>");
 })
+
+app.get('/api/v1/user/auth/goo',
+    passport.authenticate('google', { scope: ['email', 'profile'] })
+)
+
 
 //ROUTE HANDLER NOT SPECIFIED 
 app.all("*", (req, res, next) => {
