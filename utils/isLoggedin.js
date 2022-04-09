@@ -1,4 +1,4 @@
-function isLoggedin(req, res, next){
+function isLoggedin(req, res, next) {
     req.user ? next() : res.sendStatus(401);
 }
 

@@ -106,14 +106,8 @@ exports.protect = catchAsync(async (req, res, next) => {
 
     //check if user changed password after the token was issued
     if (freshUser.changePassword(decoded.iat)) {
-<<<<<<< HEAD
-       return next(new AppError("user recently changed password, please log in again", 401))
-     }
-
-=======
         return next(new AppError("user recently changed password, please log in again", 401))
     }
->>>>>>> c2d0de7281c122c1e1071f59c8a437864f617ae1
     req.user = freshUser;
     next();
 });
@@ -128,9 +122,9 @@ exports.restrictUser = (...roles) => (req, res, next) => {
 }
 
 exports.createAdminUser = catchAsync(async (req, res, next) => {
-const { id } = req.params;
+    const { id } = req.params;
 
-    const user = await User.findByIdAndUpdate(id, {role: "admin"});
+    const user = await User.findByIdAndUpdate(id, { role: "admin" });
 
     res.status(200).json({
         status: "success",

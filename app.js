@@ -12,6 +12,7 @@ const sessionx = require("express-session");
 
 //routes
 const userRouter = require("./routes/userRoute.js");
+const drugRouter = require("./routes/drugRoute");
 const errorHandler = require("./controllers/errorController");
 const AppError = require("./utils/AppError");
 const { session } = require("passport/lib");
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/drug", drugRouter);
 
 //ping if api is working
 app.get("/", (req, res) => {
@@ -60,8 +62,7 @@ app.get("/", (req, res) => {
 
 app.get('/api/v1/user/auth/goo',
     passport.authenticate('google', { scope: ['email', 'profile'] })
-)
-
+);
 
 //ROUTE HANDLER NOT SPECIFIED 
 app.all("*", (req, res, next) => {

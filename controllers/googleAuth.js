@@ -8,7 +8,7 @@ const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 passport.use(new GoogleStrategy({
     clientID: GOOGLE_CLIENT_ID,
     clientSecret: GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:8000/api/v1/user/google/callback",
+    callbackURL: `/api/v1/user/google/callback`,
     passReqToCallback: true
 },
     function (request, accessToken, refreshToken, profile, done) {
@@ -27,6 +27,11 @@ exports.callback = () => {
     })
 }
 
-exports.protect = (req, res) => {
+exports.authProtect = (req, res, next) => {
+    res.send(req.user);
+    next();
+}
+
+exports.toProtect = (req, res) => {
     res.send("hello user");
 }

@@ -24,9 +24,7 @@ exports.updateOne = Model => catchAsync(async (req, res, next) => {
         }
         res.status(201).json({
             status: "successful",
-            data: {
-                data: doc
-            }
+            data: doc
         });
 });
 
@@ -38,9 +36,7 @@ exports.createOne = Model => catchAsync( async (req, res, next) => {
     }
    res.status(201).json({
        status: "success",
-       data: {
-           data: doc
-       }
+       data: doc
    })
 });
 
@@ -54,8 +50,6 @@ exports.getOne = (Model, popOptions) => catchAsync(async (req, res, next) => {
     }
     res.status(200).json({
         status: "success",
-        data: {
-            data: doc
-        }
+        data: doc
     })
 });
