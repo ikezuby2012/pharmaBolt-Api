@@ -84,23 +84,26 @@ exports.protect = catchAsync(async (req, res, next) => {
     } else if (req.cookies.jwt) {
         token = req.cookies.jwt;
     }
-    console.log(token);
+    //console.log(token);
     if (!token) {
         return next(new AppError("you are not logged In!, log in to gain access", 403));
     }
 
     // verify token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
     //check if user exist
     const freshUser = await User.findById(decoded.id);
+
     if (!freshUser) {
         return next(new AppError("the user belonging to this token does not exist!", 403))
     }
 
-    // //check if user changed password after the token was issued
+    //check if user changed password after the token was issued
     if (freshUser.changePassword(decoded.iat)) {
        return next(new AppError("user recently changed password, please log in again", 401))
      }
+
     req.user = freshUser;
     next();
 });
@@ -115,5 +118,12 @@ exports.restrictUser = (...roles) => (req, res, next) => {
 }
 
 exports.createAdminUser = catchAsync(async (req, res, next) => {
+const { id } = req.params;
 
+    const user = await User.findByIdAndUpdate(id, {role: "admin"});
+
+    res.status(200).json({
+        status: "success",
+        data: user
+    })
 });
