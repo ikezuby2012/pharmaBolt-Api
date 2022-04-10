@@ -5,6 +5,10 @@ const bcrypt = require("bcryptjs");
 const { Schema, model } = mongoose;
 
 const UserSchema = new Schema({
+    googleId: {
+        type: String,
+        required: false,
+    },
     name: {
         type: String,
         required: [true, "user must have a name!"]
