@@ -52,8 +52,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/api/v1/user", userRouter);
-app.use("/api/v1/drug", drugRouter);
+app.use("/api/v1/user", userRouter); //user route
+app.use("/api/v1/drug", drugRouter); //drug route
 
 //ping if api is working
 app.get("/", (req, res) => {
