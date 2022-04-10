@@ -1,4 +1,5 @@
 const passport = require("passport");
+const User = require("../models/userModel");
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
@@ -15,6 +16,11 @@ passport.use(new GoogleStrategy({
         //User.findOrCreate({ googleId: profile.id }, function (err, user) {
         //    return done(null, user);
         //});
+
+        await User.create({
+            googleId: profile.id,
+            name: profile.name
+        })
 
         console.log(profile);
     }
