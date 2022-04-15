@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-require('dotenv').config();
+// const dotenv = require("dotenv")
+require('dotenv').config({ path: "./config.env" });
 
 
 process.on("uncaughtException", err => {
@@ -8,7 +9,7 @@ process.on("uncaughtException", err => {
     process.exit(1);
 });
 
-//dotenv.config({ path: "./config.env" });
+
 const app = require("./app");
 
 if (process.env.NODE_ENV === "development") {

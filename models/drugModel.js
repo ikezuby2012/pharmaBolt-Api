@@ -19,13 +19,15 @@ const drugSchema = new Schema({
         type: Number,
         required: [true, 'a drug must have a price']
     },
-    image: {
+    imageCover: {
         type: String,
         required: [true, "a drug must have an image"]
     },
+    category: { type: String },
+    images: [String],
     ratingAverage: {
         type: Number,
-        default: 4.5,
+        default: 4.0,
         min: [1, "rating must be above 1.0"],
         max: [5, "rating must not be above 5.0"],
         set: val => Math.round(val * 10) / 10

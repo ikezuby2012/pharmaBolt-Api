@@ -20,13 +20,14 @@ const app = express();
 
 //cors
 app.use(cors());
+app.options("*", cors());
 //<-- parsing data to the backend
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieParser());
 // data sanitization against noSql query injection
 app.use(mongoSanitize());
-//<-- data sanitisation against xss attacks
+//<-- data sanitization against xss attacks
 app.use(xss());
 
 app.use(compression());
@@ -63,6 +64,8 @@ app.get("/", (req, res) => {
 app.get('/api/v1/user/auth/goo',
     passport.authenticate('google', { scope: ['email', 'profile'] })
 );
+//to serve images to the client side
+app.use("/images", express.static('resources'));
 
 //ROUTE HANDLER NOT SPECIFIED 
 app.all("*", (req, res, next) => {
