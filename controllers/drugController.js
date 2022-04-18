@@ -35,3 +35,18 @@ exports.getDrugById = catchAsync(async (req, res, next) => {
 });;
 
 exports.updateDrugById = factory.updateOne(Drug);
+
+exports.getMostExpensiveDrug = catchAsync(async (req, res, next) => {
+    const doc = await Drug.aggregate([
+        {
+            $sort: {
+                price: -1
+            }
+        },
+    ]);
+
+    res.status(200).json({
+        status: "success",
+        data: doc
+    });
+});
