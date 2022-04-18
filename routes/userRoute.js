@@ -1,8 +1,9 @@
 const express = require("express");
 const isLoggedin = require("../utils/isLoggedin");
-const { login, signup,} = require("../controllers/authController");
 const { callback, toProtect} = require("../controllers/googleAuth");
+const { login, signup,} = require("../controllers/authController");
 const { route } = require("../app");
+
 
 const router = express.Router();
 
