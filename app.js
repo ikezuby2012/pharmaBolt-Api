@@ -35,6 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./controllers/googleAuth');
+require('./utils/config');
 
 if (process.env.NODE_ENV === "development") {
     app.use(morgan("dev"));
@@ -54,6 +55,7 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/user", userRouter); //user route
 app.use("/api/v1/drug", drugRouter); //drug route
+app.use("/api/v1/image", imageRoute); //image route
 
 //ping if api is working
 app.get("/", (req, res) => {
