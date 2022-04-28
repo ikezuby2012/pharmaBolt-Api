@@ -24,9 +24,11 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-node": "^11.1.0",
     "nodemon": "^2.0.15",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "sass": "^1.50.1"
   },
   "dependencies": {
+    "axios": "^0.27.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.29.1",
     "compression": "^1.7.4",
@@ -39,6 +41,7 @@
     "express-mongo-sanitize": "^2.1.0",
     "express-rate-limit": "^5.5.1",
     "express-session": "^1.17.2",
+    "flutterwave-node-v3": "^1.0.9",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.10",
     "morgan": "^1.10.0",

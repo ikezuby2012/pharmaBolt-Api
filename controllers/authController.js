@@ -3,7 +3,6 @@ const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 var GoogleStrategy = require('passport-google-oauth2').Strategy;
-//const cryptoRandomString = require("crypto-random-string");
 
 const User = require("../models/userModel");
 
@@ -22,7 +21,6 @@ const signToken = (id) =>
 exports.signup = catchAsync(async (req, res, next) => {
     //we need to specify a special route for creating administrative user
     //to prevent malicious user from becoming admin
-
 
     const newUser = await User.create({
         name: req.body.name,

@@ -46,6 +46,7 @@ const UserSchema = new Schema({
         },
         default: "user"
     },
+    
     active: {
         type: Boolean,
         default: true,
