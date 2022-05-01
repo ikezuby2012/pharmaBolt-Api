@@ -13,10 +13,13 @@ const sessionx = require("express-session");
 //routes
 const userRouter = require("./routes/userRoute.js");
 const drugRouter = require("./routes/drugRoute");
+//const imageRoute = require("./routes/imageRoute");
 const errorHandler = require("./controllers/errorController");
 const AppError = require("./utils/AppError");
 const { session } = require("passport/lib");
 const app = express();
+
+const upload = require("./utils/multer");
 
 //cors
 app.use(cors());
@@ -56,7 +59,36 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/user", userRouter); //user route
 app.use("/api/v1/drug", drugRouter); //drug route
-app.use("/api/v1/image", imageRoute); //image route
+app.use("/api/v1/image", upload.array('image'), async (req, res) => {
+
+    const uploader = async (path) => await cloudinary.uploads(path, 'images');
+
+    if (req.method == 'POST') {
+      const urls = []
+
+      const files = req.files
+
+      for (const file of files) {
+        const { path } = file
+
+        const newPath = await uploader(path)
+
+        urls.push(newPath)
+
+        fs.unlinkSync(path)
+      }
+
+      res.status(200).json({
+        message: 'images Uploaded Successfully',
+        data: urls
+      })
+      console.log("success", urls);
+    } else {
+      res.status(405).json({
+        err: "error uploading image"
+      })
+    }
+  }); //image route
 
 //ping if api is working
 app.get("/", (req, res) => {
