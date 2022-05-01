@@ -59,6 +59,8 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/user", userRouter); //user route
 app.use("/api/v1/drug", drugRouter); //drug route
+
+//testing purposes only, should be cleaned up.
 app.use("/api/v1/image", upload.array('image'), async (req, res) => {
 
     const uploader = async (path) => await cloudinary.uploads(path, 'images');
