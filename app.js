@@ -13,7 +13,11 @@ const sessionx = require("express-session");
 //routes
 const userRouter = require("./routes/userRoute.js");
 const drugRouter = require("./routes/drugRoute");
+<<<<<<< HEAD
 //const imageRoute = require("./routes/imageRoute");
+=======
+const imageRouter = require("./routes/imageRoute");
+>>>>>>> e9815dd778e0d23b4cbebdd733465b3188203e3c
 const errorHandler = require("./controllers/errorController");
 const AppError = require("./utils/AppError");
 const { session } = require("passport/lib");
@@ -59,6 +63,7 @@ app.use((req, res, next) => {
 
 app.use("/api/v1/user", userRouter); //user route
 app.use("/api/v1/drug", drugRouter); //drug route
+<<<<<<< HEAD
 
 //testing purposes only, should be cleaned up.
 app.use("/api/v1/image", upload.array('image'), async (req, res) => {
@@ -91,6 +96,9 @@ app.use("/api/v1/image", upload.array('image'), async (req, res) => {
       })
     }
   }); //image route
+=======
+app.use("/api/v1/image", imageRouter); //image route
+>>>>>>> e9815dd778e0d23b4cbebdd733465b3188203e3c
 
 //ping if api is working
 app.get("/", (req, res) => {
