@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -9,7 +10,6 @@ const compression = require("compression");
 const passport = require("passport");
 const sessionx = require("express-session");
 
-
 //routes
 const userRouter = require("./routes/userRoute.js");
 const drugRouter = require("./routes/drugRoute");
@@ -19,6 +19,8 @@ const AppError = require("./utils/AppError");
 const { session } = require("passport/lib");
 const app = express();
 
+//<-- serving static files
+app.use(express.static(`${__dirname}/public`));
 //cors
 app.use(cors());
 app.options("*", cors());
@@ -69,11 +71,16 @@ app.get('/api/v1/user/auth/goo',
 );
 //to serve images to the client side
 app.use("/images", express.static('resources'));
+//SERVE CLIENT ROUTES
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 //ROUTE HANDLER NOT SPECIFIED 
 app.all("*", (req, res, next) => {
     next(new AppError(`can't find ${req.originalUrl} on this server`, 404));
 });
+
 
 app.use(errorHandler);
 

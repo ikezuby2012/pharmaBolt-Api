@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3e059d9f.css",
+    "main.js": "/static/js/main.5fc93dda.js",
+    "static/media/drug1.svg": "/static/media/drug1.765dbb8e0e5fb9f7717939b9f619d97b.svg",
+    "static/media/drug2.svg": "/static/media/drug2.824da29465fe4a11b43dc80b1b597b9d.svg",
+    "static/media/doc.png": "/static/media/doc.bc3953f79949bf8a49be.png",
+    "static/media/productd.png": "/static/media/productd.f144bd1773ed0c697270.png",
+    "static/media/hands.png": "/static/media/hands.baca8534d630d459f661.png",
+    "static/media/product2.png": "/static/media/product2.67f4bb7721ddad041a38.png",
+    "static/media/product3.png": "/static/media/product3.b89d50f4c0bb22ef7c45.png",
+    "static/media/product5.png": "/static/media/product5.2e59ae84a5df0a411c9b.png",
+    "static/media/footer-logo.svg": "/static/media/footer-logo.197a9f37b81b0bdcca998fe8297411e4.svg",
+    "static/media/logo.svg": "/static/media/logo.5ef946229b904a9d2e317c97276aeccd.svg",
+    "static/media/product6.png": "/static/media/product6.6edb860b105841157b7c.png",
+    "static/media/product7.png": "/static/media/product7.259532dbc2dfb8cb65ad.png",
+    "static/media/celebrate.svg": "/static/media/celebrate.774d55e79a252445f340c41c6f620ea1.svg",
+    "static/media/product4.png": "/static/media/product4.f372e1cd45859de296df.png",
+    "static/media/product8.png": "/static/media/product8.446e4bcdfc1951645eab.png",
+    "static/media/product1.png": "/static/media/product1.084b6c3a24b51f94cf67.png",
+    "static/media/bolt2.svg": "/static/media/bolt2.2f6a0a473293c1e323aaabd59ba95cba.svg",
+    "static/media/boltMD.svg": "/static/media/boltMD.1e480f3125af45be733b348a0a9b6bb0.svg",
+    "static/media/bolt.svg": "/static/media/bolt.fbb2105bc910f58aac1f4ec86f5e228b.svg",
+    "static/media/twitter.svg": "/static/media/twitter.72f6757f11f68e1b788db940cc197f2c.svg",
+    "static/media/linked_in.svg": "/static/media/linked_in.4994fcb03903871832b667636b5af7f4.svg",
+    "index.html": "/index.html",
+    "static/media/facebook.svg": "/static/media/facebook.6777fe7112be992b6d0e8b6f36d3bf98.svg",
+    "main.3e059d9f.css.map": "/static/css/main.3e059d9f.css.map",
+    "main.5fc93dda.js.map": "/static/js/main.5fc93dda.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3e059d9f.css",
+    "static/js/main.5fc93dda.js"
+  ]
+}
