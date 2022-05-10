@@ -13,6 +13,7 @@ const sessionx = require("express-session");
 //routes
 const userRouter = require("./routes/userRoute.js");
 const drugRouter = require("./routes/drugRoute");
+//const imageRoute = require("./routes/imageRoute");
 const imageRouter = require("./routes/imageRoute");
 const errorHandler = require("./controllers/errorController");
 const AppError = require("./utils/AppError");
@@ -21,6 +22,8 @@ const app = express();
 
 //<-- serving static files
 app.use(express.static(`${__dirname}/public`));
+// const upload = require("./utils/multer");
+
 //cors
 app.use(cors());
 app.options("*", cors());
