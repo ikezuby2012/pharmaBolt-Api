@@ -8,12 +8,12 @@ const { callback, toProtect } = require("../controllers/googleAuth");
 const { route } = require("../app");
 
 const router = express.Router();
+router.get("/", getAllDrugs);
+router.get("/:id", getDrugById);
 
 router.use(protect);
 router.get("/expensive-drugs", getMostExpensiveDrug);
-router.route("/").post(createNewDrug).get(getAllDrugs);
-router.route("/:id").get(getDrugById).patch(updateDrugById).delete(deleteDrug);
-
-
+router.route("/").post(createNewDrug);
+router.route("/:id").patch(updateDrugById).delete(deleteDrug);
 
 module.exports = router;

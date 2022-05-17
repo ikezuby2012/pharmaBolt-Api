@@ -5,11 +5,11 @@ require('dotenv').config({ path: "./config.env" });
 const Drug = require("../models/drugModel");
 
 if (process.env.NODE_ENV === "development") {
-    mongoose.connect(process.env.DATABASE_LOCAL, {
+    mongoose.connect(process.env.DATABASE_ATLAS, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).then(() => {
-        console.log(`local database connected successfully`);
+        console.log(`database connected successfully`);
     })
 } else {
     mongoose.connect(process.env.DATABASE_ATLAS, {

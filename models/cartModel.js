@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const { Schema, model } = mongoose;
 
 const cartSchema = new Schema({
@@ -17,6 +16,11 @@ const cartSchema = new Schema({
         type: Number,
         default: 1,
         min: [1, "must not be less than 1"]
+    },
+    total: {
+        type: Number,
+        default: 1,
+        min: [1, "must not be less than 1"]
     }
 }, {
     timestamps: {
@@ -26,5 +30,21 @@ const cartSchema = new Schema({
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
 });
+
+cartSchema.pre(/^find/, function (next) {
+    this.populate({
+        path: "user",
+        select: "name email role country"
+    })
+        .populate("drug");
+    // this.total = this.drug.price * quality;
+    next();
+});
+
+// cartSchema.pre(/^find/, function (next) {
+//     console.log(this.quality);
+//     // this.total = this.drug.price * quality;
+//     next();
+// })
 
 module.exports = model("Cart", cartSchema);

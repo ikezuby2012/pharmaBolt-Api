@@ -13,6 +13,7 @@ const sessionx = require("express-session");
 //routes
 const userRouter = require("./routes/userRoute.js");
 const drugRouter = require("./routes/drugRoute");
+const cartRouter = require("./routes/cartRoute");
 //const imageRoute = require("./routes/imageRoute");
 const imageRouter = require("./routes/imageRoute");
 const errorHandler = require("./controllers/errorController");
@@ -63,6 +64,7 @@ app.use((req, res, next) => {
 app.use("/api/v1/user", userRouter); //user route
 app.use("/api/v1/drug", drugRouter); //drug route
 app.use("/api/v1/image", imageRouter); //image route
+app.use("/api/v1/cart", cartRouter); //image route
 
 //ping if api is working
 app.get("/", (req, res) => {
